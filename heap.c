@@ -5,17 +5,18 @@
 #include <printf.h>
 
 // Structure for the heap
-struct heap
-{
-    int *arr;
-    int size;
-    int capacity;
-};
-
 struct heapNode
 {
     int value;
     int priority;
+};
+
+
+struct heap
+{
+    struct heapNode *arr;
+    int size;
+    int capacity;
 };
 
 // Prototypes for the functions in heap.c
@@ -25,6 +26,11 @@ int peek(struct heap curr_heap);
 int is_empty(struct heap curr_heap);
 int size(struct heap curr_heap);
 
+// Functions for the Hepa Node
+struct heapNode create_heap_node(int value, int priority);
+int get_value(struct heapNode node);
+int get_priority(struct heapNode node);
+
 // Main function
 int main()
 {
@@ -33,6 +39,42 @@ int main()
 }
 
 // Implementation of the heap functions
+
+void heapify(struct heap curr_heap)
+{
+    return;
+}
+
+
+/**
+ * Function to enqueue an element in the heap
+ * @param curr_heap the heap
+ * @param value value we want to insert
+ * @param priority priority of the value
+ */
+void enqueue(struct heap curr_heap, int value, int priority)
+{
+    // Check if the heap is full
+    if (size(curr_heap) == curr_heap.capacity)
+    {
+        printf("Heap is full\n");
+        return;
+    }
+
+    // create the heap node
+    struct heapNode node = create_heap_node(value, priority);
+
+    // Insert the element at the end of the heap
+    curr_heap.arr[size(curr_heap)] = node;
+    curr_heap.size++;
+
+    // Heapify the heap
+    heapify(curr_heap);
+}
+
+
+
+
 
 /**
  * Function to fetch the max element in the heap
@@ -46,7 +88,7 @@ int peek(struct heap curr_heap)
         printf("Heap is empty\n");
         return -1;
     }
-    return curr_heap.arr[0];
+    return get_value(curr_heap.arr[0]);
 }
 
 /**
@@ -67,4 +109,36 @@ int is_empty(struct heap curr_heap)
 int size(struct heap curr_heap)
 {
     return curr_heap.size;
+}
+
+/***********************************************
+ * Functions for the heap node
+ */
+
+struct heapNode create_heap_node(int value, int priority)
+{
+    struct heapNode node;
+    node.value = value;
+    node.priority = priority;
+    return node;
+}
+
+/**
+ * Function to get a value from a heap node
+ * @param node
+ * @return
+ */
+int get_value(struct heapNode node)
+{
+    return node.value;
+}
+
+/**
+ * Function to get the priority of a heap node
+ * @param node
+ * @return
+ */
+int get_priority(struct heapNode node)
+{
+    return node.priority;
 }
