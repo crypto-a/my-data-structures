@@ -72,8 +72,34 @@ void enqueue(struct heap curr_heap, int value, int priority)
     heapify(curr_heap);
 }
 
+/**
+ * Function to dequeue the max element in the heap
+ * @param curr_heap the heap
+ * @return the max element in the heap
+ */
+int dequeue(struct heap curr_heap)
+{
+    // Check if the heap is empty
+    if (is_empty(curr_heap))
+    {
+        printf("Heap is empty\n");
+        return -1;
+    }
 
+    // Get the max element and extract the value
+    struct heapNode max = curr_heap.arr[0];
+    int value = get_value(max);
 
+    // Move the last element to the root
+    curr_heap.arr[0] = curr_heap.arr[size(curr_heap) - 1];
+    curr_heap.size--;
+
+    // Heapify the heap
+    heapify(curr_heap);
+
+    // Return the max element
+    return value;
+}
 
 
 /**
