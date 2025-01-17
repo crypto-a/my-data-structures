@@ -35,6 +35,21 @@ int main()
 // Implementation of the heap functions
 
 /**
+ * Function to fetch the max element in the heap
+ * @param curr_heap the heap
+ * @return teh maximum in the heap.
+ */
+int peek(struct heap curr_heap)
+{
+    if (is_empty(curr_heap))
+    {
+        printf("Heap is empty\n");
+        return -1;
+    }
+    return curr_heap.arr[0];
+}
+
+/**
  * Function to check of the current heap is empty or not;
  * @param curr_heap
  * @return boolean value of weather the heap is empty of not
