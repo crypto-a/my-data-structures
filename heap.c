@@ -34,6 +34,15 @@ int main()
 
 // Implementation of the heap functions
 
+/**
+ * Function to check of the current heap is empty or not;
+ * @param curr_heap
+ * @return boolean value of weather the heap is empty of not
+ */
+int is_empty(struct heap curr_heap)
+{
+    return size(curr_heap) == 0;
+}
 
 /**
  * Function to get the size of the heap
